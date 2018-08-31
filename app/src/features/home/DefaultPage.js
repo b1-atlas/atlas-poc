@@ -100,7 +100,7 @@ export class DefaultPage extends Component {
     this.setState({
       forecasting: true,
     });
-    const dataRange = this.state.dataRangeType != 'year' ? 'all' : 'year';
+    const dataRange = this.state.dataRangeType !== 'year' ? 'all' : 'year';
     this.props.actions
       .fetchForecastPriceList({}, dataRange)
       .then(() => {
@@ -236,7 +236,7 @@ export class DefaultPage extends Component {
       fetchRecommendationError,
       recommendationList,
     } = this.props.home;
-    console.log('recommendationList', recommendationList);
+    // console.log('recommendationList', recommendationList);
     const weekdaysOptions = [
       { label: 'Mon', value: '1' },
       { label: 'Tue', value: '2' },
@@ -457,8 +457,8 @@ export class DefaultPage extends Component {
                     {recommendationList.length > 0 && (
                       <div className="chart-container recommend">
                         <strong>
-                          Here are the purchase quantity recommendation of each days for next 3
-                          months:
+                          Here are the purchase quantity recommendation per day for April, May and
+                          June:
                         </strong>
                         <div className="chart-legend">
                           <span className="line recommend" />
@@ -498,7 +498,7 @@ export class DefaultPage extends Component {
               </fieldset>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Atlas team #B1 Hackathon 2018# </Footer>
+          <Footer style={{ textAlign: 'center' }}>Atlas team @B1 Hackathon 2018 </Footer>
         </Layout>
       </div>
     );
