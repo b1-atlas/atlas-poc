@@ -24,7 +24,7 @@ function parseData(data) {
 // If you prefer redux-saga, you can use rekit-plugin-redux-saga: https://github.com/supnate/rekit-plugin-redux-saga
 export function fetchRecommendation(args = {}, period, weekdays, confidence) {
   // console.log(period, weekdays, confidence);
-  console.log(period, weekdays.join(','), confidence);
+  console.log(period, weekdays.join(','), 1 - confidence);
   return dispatch => {
     // optionally you can have getState as the second argument
     dispatch({
@@ -41,7 +41,7 @@ export function fetchRecommendation(args = {}, period, weekdays, confidence) {
       // args.error here is only for test coverage purpose.
       // http://10.58.137.250:5050/recommend/ http://localhost:6075/recommend
       const doRequest = axios.get('http://10.58.137.250:5050/recommend/', {
-        headers: { PERIOD: period, WEEKDAYS: weekdays.join(','), CONFIDENCE: confidence },
+        headers: { PERIOD: period, WEEKDAYS: weekdays.join(','), CONFIDENCE: 1 - confidence },
       });
       doRequest.then(
         res => {

@@ -35,6 +35,7 @@ export function fetchPurchasePriceList(args = {}) {
       // doRequest is a placeholder Promise. You should replace it with your own logic.
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
+      // http://10.58.137.250:5050/getdata/ http://localhost:6075/getdata
       const doRequest = axios.get('http://10.58.137.250:5050/getdata/', {
         // headers: { FROM: '20160331', TO: '20170331' },
       });

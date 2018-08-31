@@ -40,7 +40,8 @@ export function fetchForecastPriceList(args = {}, dataRange = 'all') {
       // args.error here is only for test coverage purpose.
       // FROM: '20160401',
       // TO: '20160731',
-      const doRequest = axios.get('http://10.58.137.250:5050/forecast/', {
+      // http://10.58.137.250:5050/forecast/ http://localhost:6075/forecast
+      const doRequest = axios.get('http://10.58.137.250:5050/forecast/ ', {
         headers: {
           DATARANGE: dataRange,
         },

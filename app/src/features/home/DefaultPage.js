@@ -184,7 +184,7 @@ export class DefaultPage extends Component {
         <Layout>
           <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <div className="app-title">
-              <h2>Atlas POC</h2>
+              <h2>Intelligent Enterprise - Atlas POC</h2>
             </div>
           </Header>
           <Content style={{ padding: '0 50px', marginTop: 64 }}>
@@ -251,7 +251,7 @@ export class DefaultPage extends Component {
         <Layout>
           <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <div className="app-title">
-              <h2>Atlas POC</h2>
+              <h2>Intelligent Enterprise - Atlas POC</h2>
             </div>
           </Header>
           <Content style={{ padding: '0 50px', marginTop: 64 }}>
