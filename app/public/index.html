@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Atlas POC</title>
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      background-color: #f0f0f0;
+      font-family: Tahoma, Arial, 'Hiragino Sans GB', 'Hiragino Sans GB W3', 'Microsoft Yahei';
+    }
+
+    #loading-node {
+      width: 300px;
+      height: 8px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #loading-node div {
+      height: 100%;
+      border-radius: 4px;
+      background-color: #00bfff;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #loading-node label {
+      font-size: 12px;
+      color: #999;
+      display: block;
+      text-align: center;
+      font-family: Arial;
+      position: absolute;
+      top: -28px;
+      left: 0;
+      width: 100%;
+    }
+
+    #root {
+      opacity: 0;
+      transition: opacity .6s;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="loading-node"><label>正在加载：0%</label><div></div></div>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script>
+    (function () {
+      var isInIFrame = window.location !== window.parent.location;
+      if (isInIFrame) {
+        // alert('should not be in iframe');
+        return;
+      }
+      var rootNode = document.querySelector('#root');
+      var loadingNode = document.querySelector('#loading-node');
+      var textNode = loadingNode.childNodes[0];
+      var barNode = loadingNode.childNodes[1];
+      var req = new XMLHttpRequest();
+
+      // report progress events
+      req.addEventListener('progress', function (evt) {
+        // if (evt.lengthComputable) {
+        var percentCompvare = (evt.loaded || 0) / (evt.total || 2348700);
+        if (percentCompvare > 1) {
+          percentCompvare = 1;
+        }
+        var percent = Math.round(percentCompvare * 100, 10) + '%';
+        textNode.innerHTML = '正在加载：' + percent;
+        barNode.style.width = percent;
+        // } else {
+        //   // Unable to compute progress information since the total size is unknown
+        //   console.log('unable to compute progress.', evt.loaded, evt.total);
+        // }
+      }, false);
+
+      // load responseText into a new script element
+      req.addEventListener('load', function (evt) {
+        window.setTimeout(function () {
+          // timeout to ensure 100% progress bar.
+          var scriptNode = document.createElement('script');
+          scriptNode.innerHTML = evt.target.responseText;
+          document.getElementsByTagName('head')[0].appendChild(scriptNode);
+          loadingNode.style.display = 'none';
+          window.setTimeout(function () {
+            rootNode.style.opacity = 1;
+          }, 200);
+        }, 0);
+      }, false);
+
+      // TODO: handle load error
+
+      //request bundle.js
+      req.open('GET', '<%= htmlWebpackPlugin.files.chunks["main"].entry %>');
+      req.send();
+    })();
+  </script>
+</body>
+
+</html>

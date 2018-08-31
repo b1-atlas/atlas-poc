@@ -1,0 +1,104 @@
+@import '../../styles/mixins';
+
+.home-default-page {
+  text-align: center;
+  .app {
+    text-align: center;
+  }
+
+  .app-logo {
+    animation: app-logo-spin infinite 10s linear;
+    height: 80px;
+  }
+
+  .rekit-logo {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.08;
+    height: 190px;
+  }
+
+  .app-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .app-title {
+    font-size: 1.5em;
+    > h2 {
+      color: rgba(255, 255, 255, 0.85);
+      text-align: left;
+    }
+  }
+
+  .app-intro {
+    font-size: large;
+  }
+
+  .app-content {
+    text-align: left;
+    .ant-spin.ant-spin-spinning {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      z-index: 9;
+    }
+
+    .date-links {
+      .link {
+        margin-left: 15px;
+        color: rgba(0, 0, 0, 0.85);
+
+        &.active {
+          color: rgba(24, 144, 255, 0.85);
+          cursor: not-allowed;
+          text-decoration-line: none;
+        }
+      }
+    }
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    margin-top: 20px;
+  }
+  li {
+    margin-top: 10px;
+  }
+
+  a {
+    color: #0288d1;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p.memo {
+    width: 500px;
+    color: #999;
+    font-size: 12px;
+    line-height: 150%;
+    margin: auto;
+  }
+
+  @keyframes app-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
