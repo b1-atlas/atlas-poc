@@ -40,7 +40,7 @@ export function fetchRecommendation(args = {}, period, weekdays, confidence) {
       // See the real-word example at:  https://github.com/supnate/rekit/blob/master/src/features/home/redux/fetchRedditReactjsList.js
       // args.error here is only for test coverage purpose.
       // http://10.58.137.250:5050/recommend/ http://localhost:6075/recommend
-      const doRequest = axios.get('http://localhost:6075/recommend', {
+      const doRequest = axios.get('http://10.58.137.250:5050/recommend/', {
         headers: { PERIOD: period, WEEKDAYS: weekdays.join(','), CONFIDENCE: confidence },
       });
       doRequest.then(
