@@ -132,11 +132,6 @@ export class DefaultPage extends Component {
           recommending: false,
         });
       });
-    // setTimeout(() => {
-    //   this.setState({
-    //     recommending: false,
-    //   });
-    // }, 1000);
   };
 
   handleDateLink = evt => {
